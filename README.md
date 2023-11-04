@@ -1,7 +1,7 @@
 # Lunacid---Save-converter
 A save converter that can convert binary formatted saves into xml and back.
 
-Important: I do not take the responsibility for corrupted saves. Use it at your own risk!
+**Important:** I do not take the responsibility for corrupted saves. Use it at your own risk!
 
 Requirements
 ------------
