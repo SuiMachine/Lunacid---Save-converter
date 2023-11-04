@@ -1,0 +1,5 @@
+This is essentially a cut down version of original game assembly containing only the class used for storing player progress with a removed constructor that was causing issues.
+
+This is done for two reasons:
+1. Because the presence of the constructor and its references to ecalls of Vector3 were causing issues with binary serialization.
+2. Because this library still has to be distributed along with the exe for the binary serialization to work properly (or for binary desarialization to happen).
