@@ -11,5 +11,7 @@ Requirements
 Usage
 ------------
 Drag and drop a save file (e.g. SAVE_0.MIDNIGHT) onto the exe to convert it to XML. Drag and drop XML to convert it back to MIDNIGHT binary file.
+
 Alternatively launch it with command line:
+
 ```Lunacid-SaveConverter.exe "<path to the file>"```
