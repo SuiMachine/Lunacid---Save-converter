@@ -1,5 +1,6 @@
 .vs/*
 bin/*
 obj/*
+*.7z
 
 Release/Lunacid-SaveConverter.exe.config

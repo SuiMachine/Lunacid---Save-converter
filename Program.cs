@@ -21,43 +21,24 @@ namespace Lunacid_SaveConverter
 						var filePath = args[0];
 						if (filePath.EndsWith(".xml", StringComparison.InvariantCultureIgnoreCase))
 						{
+
 							var outputPath = filePath.Remove(filePath.IndexOf(".xml", StringComparison.InvariantCultureIgnoreCase)) + ".MIDNIGHT";
+							var backupPath = outputPath + "_backup";
 
-							var readText = new StreamReader(filePath);
-							var xmlSerializer = new XmlSerializer(typeof(PlayerData));
-							PlayerData playerData = (PlayerData)xmlSerializer.Deserialize(readText);
-							readText.Close();
-
-							var binaryFormatter = new BinaryFormatter();
-							if(File.Exists(outputPath))
-							{
-								if (!File.Exists(outputPath + "_backup"))
-									File.Copy(outputPath, outputPath + "_backup", true);
-								File.Delete(outputPath);
-							}
-
-							FileStream fileStream = new FileStream(outputPath, FileMode.Create);
-							binaryFormatter.Serialize(fileStream, playerData);
-							fileStream.Close();
+							if (filePath.EndsWith("SETTINGS.xml", StringComparison.InvariantCultureIgnoreCase))
+								Converter.ConvertToBinaryFormat<SystemData>(filePath, outputPath, backupPath);
+							else
+								Converter.ConvertToBinaryFormat<PlayerData>(filePath, outputPath, backupPath);
 
 							Console.WriteLine("Converted to MIDNIGHT binary format!");
 						}
 						else if (filePath.EndsWith(".MIDNIGHT", StringComparison.InvariantCultureIgnoreCase))
 						{
 							var outputPath = filePath.Remove(filePath.IndexOf(".MIDNIGHT", StringComparison.InvariantCultureIgnoreCase)) + ".xml";
-							var binaryFormatter = new BinaryFormatter();
-							FileStream fileStream = new FileStream(filePath, FileMode.Open);
-							PlayerData playerData = (PlayerData)binaryFormatter.Deserialize(fileStream);
-							fileStream.Close();
-
-							var xmlSerializer = new XmlSerializer(typeof(PlayerData));
-
-							if (File.Exists(outputPath))
-								File.Delete(outputPath);
-
-							var outputStream = File.Create(outputPath);
-							xmlSerializer.Serialize(outputStream, playerData);
-							outputStream.Close();
+							if (filePath.EndsWith("SETTINGS.MIDNIGHT", StringComparison.InvariantCultureIgnoreCase))
+								Converter.ConvertToXmlFormat<SystemData>(filePath, outputPath);
+							else
+								Converter.ConvertToXmlFormat<PlayerData>(filePath, outputPath);
 
 							Console.WriteLine("Converted to xml!");
 						}
@@ -72,7 +53,7 @@ namespace Lunacid_SaveConverter
 					Console.WriteLine("Drag and drop a file onto exe!");
 				}
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 				Console.WriteLine("Error: " + ex.ToString());
 			}

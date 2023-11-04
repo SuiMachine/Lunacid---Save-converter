@@ -2,6 +2,6 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartWorkingDirectory>H:\Steam\steamapps\common\Lunacid\LUNACID_Data</StartWorkingDirectory>
-    <StartArguments>"H:\Steam\steamapps\common\Lunacid\LUNACID_Data\SAVE_0.xml"</StartArguments>
+    <StartArguments>"H:\Steam\steamapps\common\Lunacid\LUNACID_Data\SETTINGS.MIDNIGHT"</StartArguments>
   </PropertyGroup>
 </Project>
